@@ -1,0 +1,4 @@
+node_modules
+mysql
+*.lock
+README.md
