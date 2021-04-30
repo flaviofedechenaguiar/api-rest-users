@@ -76,8 +76,8 @@ module.exports = {
                     }
                 });
             } else {
-                return res.status(200).json({
-                    code: 200,
+                return res.status(202).json({
+                    code: 202,
                     user_data: {
                         name: '',
                         lastName: '',
@@ -92,10 +92,14 @@ module.exports = {
     deleteUser: async (req, res) => {
         let { id } = req.params;
         try {
-            await User.destroy({ where: { id } });
-            return res.status(200).json({ code: 200 });
+            let userDeleted = await User.destroy({ where: { id } });
+            if (Number(userDeleted)) {
+                return res.status(200).json({ code: 200 });
+            } else {
+                return res.status(202).json({ code: 202 });
+            }
         } catch (err) {
-            return res.status(500).json({ code: 500, error: 'Erro ao fazer deleção na base de dados' });
+            return res.status(500).json({ code: 500, error: 'Erro ao deletar da base de dados' });
         }
     },
     updateUserPartial: async (req, res) => {
@@ -149,11 +153,12 @@ module.exports = {
             let userUpdated = await User.update(userObject, { where: { id: { [Op.eq]: id } } });
             if (Number(userUpdated)) {
                 let userFind = await User.findOne({ where: { id: { [Op.eq]: id } } });
-                return res.status(200).json(userFind);
+                return res.status(200).json({ code: 200, user_data: userFind });
             } else {
-                return res.status(200).json({
-                    code: 200,
+                return res.status(202).json({
+                    code: 202,
                     user_data: {
+                        id: 0,
                         name: '',
                         lastName: '',
                         nickname: '',
