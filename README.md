@@ -76,7 +76,7 @@ Exemplo:
 
 ### GET /users?dataUser={nomeousobrenome}
 Endpoint responsável por retornar todos os usuário que possuem o nome ou sobrenome respectivo.
-#### Query params: *dataUser*
+- Query params: *dataUser*
 
 Exemplo de requisição:
 ```
