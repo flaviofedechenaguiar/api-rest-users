@@ -76,7 +76,7 @@ Exemplo:
 
 ### GET /users?dataUser={nomeousobrenome}
 Endpoint responsável por retornar todos os usuário que possuem o nome ou sobrenome respectivo.
-#### Parâmetros de consulta: *dataUser*
+#### Query params: *dataUser*
 
 Exemplo de requisição:
 ```
@@ -232,6 +232,10 @@ Exemplo:
 ### POST /users
 Endpoint responsável por fazer o cadastro do usuário.
 #### Parâmetros:
+- Path params: *id*
+
+Body params:
+
 ```
 {
     "name":"nomedousuario",          // Obrigatório
