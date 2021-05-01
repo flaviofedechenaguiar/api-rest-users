@@ -46,7 +46,8 @@ module.exports = {
                     hateOAS.getHATEOAS(`?dataUser=${user.name}`, 'GET', 'get_users_name'),
                     hateOAS.getHATEOAS(`?dataUser=${user.lastName}`, 'GET', 'get_users_last_name'),
                     hateOAS.getHATEOAS(`/${user.nickname}`, 'GET', 'get_user_nickname'),
-                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'POST', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user_partial'),
                     hateOAS.getHATEOAS(`/${user.id}`, 'DELETE', 'delete_user')
                 ]
             });
@@ -93,7 +94,8 @@ module.exports = {
                     hateOAS.getHATEOAS(`?dataUser=${user.name}`, 'GET', 'get_users_name'),
                     hateOAS.getHATEOAS(`?dataUser=${user.lastName}`, 'GET', 'get_users_last_name'),
                     hateOAS.getHATEOAS(`/${user.nickname}`, 'GET', 'get_user_nickname'),
-                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'POST', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user_partial'),
                     hateOAS.getHATEOAS(`/${user.id}`, 'DELETE', 'delete_user')
                 ]
 
@@ -103,10 +105,11 @@ module.exports = {
             }
 
         } catch (err) {
-            if (err instanceof TypeError) {
-                return res.status(500).json({ code: 500, error: 'Erro ao fazer cadastro na base de dados' });
-            } else {
+            if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
+            } else {
+                console.log(err);
+                return res.status(500).json({ code: 500, error: 'Erro ao fazer cadastro na base de dados' });
             }
         }
     },
@@ -122,7 +125,8 @@ module.exports = {
                 user['_links'] = [
                     hateOAS.getHATEOAS(`?dataUser=${user.name}`, 'GET', 'get_users_name'),
                     hateOAS.getHATEOAS(`?dataUser=${user.lastName}`, 'GET', 'get_users_last_name'),
-                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'POST', 'update_user'),
+                    hateOAS.getHATEOAS(`/${user.id}`, 'PATCH', 'update_user_partial'),
                     hateOAS.getHATEOAS(`/${user.id}`, 'DELETE', 'delete_user')
                 ]
 
@@ -222,10 +226,11 @@ module.exports = {
                 });
             }
         } catch (err) {
-            if (err instanceof TypeError) {
-                return res.status(500).json({ code: 500, error: 'Erro ao fazer atualização na base de dados' });
-            } else {
+            if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
+            } else {
+                console.log(err);
+                return res.status(500).json({ code: 500, error: 'Erro ao fazer atualização na base de dados' });
             }
         }
     },
@@ -267,7 +272,7 @@ module.exports = {
 
             let userObject = { name, lastName, nickname, address, bio };
 
-            let userUpdated = await User.update(userObject, { where: { id: { [Op.eq]: id } } });
+            let userUpdated = await User.update( userObject , { where: { id: { [Op.eq]: id } } });
             if (Number(userUpdated)) {
                 let userFind = await User.findOne({ where: { id: { [Op.eq]: id } } });
 
@@ -290,10 +295,11 @@ module.exports = {
                 });
             }
         } catch (err) {
-            if (err instanceof TypeError) {
-                return res.status(500).json({ code: 500, error: 'Erro ao fazer atualização na base de dados' });
-            } else {
+            console.log(err);
+            if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
+            } else {
+                return res.status(500).json({ code: 500, error: 'Erro ao fazer atualização na base de dados' });
             }
         }
     }
