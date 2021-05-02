@@ -20,6 +20,4 @@ connection.authenticate()
         console.log('Error: ', err);
     });
 
-app.listen(3030, () => {
-    console.log('Api rodando');
-});
+module.exports = app;
