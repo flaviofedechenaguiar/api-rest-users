@@ -40,7 +40,63 @@ Imagem de exemplo para inserir o token:
 
 # API Documentation
 Esta API é utilizada para gerenciamento dos usuários
+
+Ferramentas para o Desenvolvimento
+- Express
+- Docker and Docker Compose
+- Sequelize (MySQL);
+- HATEAOS
+- JWT (JasonWebToken)
+- Jest Tester
+
 ## Endpoints
+
+
+### POST /auth
+Endpoint responsável fazer retornar o token de autenticação a partir do nickname de um usuário.
+#### Parâmetros
+Body params:
+```
+{
+    "nickname":"nicknamedousuário"
+}
+```
+
+#### Responstas
+##### OK! 200
+Caso haja um usuário com o nickname respectivo, ira ser retornado o Token.
+
+Exemplo de resposta:
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InJvYmVydG8wNCIsIm5hbWUiOiJyb2JlcnRvIiwiaWQiOjEyLCJpYXQiOjE2MjAwNjI2MDEsImV4cCI6MTYyMDIzNTQwMX0.nVnZ9Envhc1YEyyGZ69GTdkvzH7f5Cok0S2sCuWgRj0"
+}
+```
+
+##### NÃO AUTORIZADO! 401
+Caso não haja um usuário com o respectivo nickname. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Nickname inválido"
+}
+
+```
+
+##### Erro no servidor! 500
+Caso ocorra esta resposta, significa que houve algum problema relacionado a geracão do Token. Motivos: Intederminado.
+
+Exemplo:
+```
+{
+    "code": 500,
+    "error": "Ocorreou algum erro enquanto gerava o token"
+}
+```
+
+
 ### GET /users
 Endpoint responsável por retornar todos os usuário presentes no sistema.
 #### Parâmetros
@@ -101,6 +157,19 @@ Exemplo de resposta:
     ]
 }
 ```
+
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
+}
+
+```
+
 ##### Erro no servidor! 500
 Caso ocorra esta resposta, significa que houve algum problema da base de dados. Motivos: Indeterminado.
 
@@ -182,6 +251,18 @@ Exemplo de resposta caso não encontre correspondente ao solicitado:
     "users": []
 }
 ```
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
+}
+
+```
+
 ##### Erro no servidor! 500
 Caso ocorra esta resposta, significa que houve algum problema na base de dados. Motivos: Indeterminado.
 
@@ -252,6 +333,18 @@ Exemplo de resposta:
         "nickname": "",
         "_links": []
     }
+}
+
+```
+
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
 }
 
 ```
@@ -395,6 +488,18 @@ Exemplos:
     "code": 400,
     "error": "Máximo permitido são 100 caracteres para a bio"
 }
+```
+
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
+}
+
 ```
 
 ##### Erro no servidor! 500
@@ -543,6 +648,18 @@ Exemplos:
 }
 ```
 
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
+}
+
+```
+
 ##### Erro no servidor! 500
 Caso ocorra esta resposta, significa que houve algum problema da base de dados. Motivos: Indeterminado.
 
@@ -577,6 +694,18 @@ Exemplo de resposta:
 ```
 {
     "code": 202
+}
+
+```
+
+##### NÃO AUTORIZADO! 401
+Caso não haja um Token correspondente com a validação. 
+
+Exemplo de resposta:
+```
+{
+    "code": 401,
+    "error": "Token inválido"
 }
 
 ```
