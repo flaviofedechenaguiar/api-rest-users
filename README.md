@@ -1,5 +1,42 @@
 # Como iniciar o projeto
 
+Passos para Executar o Projeto:
+## 1) Ir ao diretório principal do projeto e executar 'docker-compose up'
+```
+flavio@flavio:~/Desktop/apiRestUsers$ ls
+docker-compose.yml  Dockerfile  instructions.md  jest.config.js  node_modules  package.json  package-lock.json  README.md  src  test
+flavio@flavio:~/Desktop/apiRestUsers$ docker compose up
+```
+Obs: ao executar o comando, será gerado um erro por parte do nodejs. É necessário que ele termine de criar a pasta mysql com a base de dados, 
+para isso espere aparecer a menssagem:
+```
+mysql-container | 2021-05-03T16:19:40.900512Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.24'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+```
+logo após e só fechar o container com **ctrl + c** e subi-lo novamente.
+
+## 2) Caso queira executar um teste utilize o comando 'docker exec -it node_container npm test'
+```
+flavio@flavio:~/Desktop/apiRestUsers$ ls
+docker-compose.yml  Dockerfile  instructions.md  jest.config.js  node_modules  package.json  package-lock.json  README.md  src  test
+flavio@flavio:~/Desktop/apiRestUsers$ docker exec -it node_container npm test
+```
+## 3) Como utilizar o projeto:
+O projeto utiliza JWT, por conta disso faz se necessário a criacão de um usuário, e com o **nickname** será utilizado na rota POST */auth*
+para efetuar a autenticacão
+
+Imagem de exemplo criacão de um usuário:
+![image1](https://cdn.discordapp.com/attachments/490594796088459275/838819140713185300/Screenshot_from_2021-05-03_13-46-01.png)
+Imagem de exemplo para obter o token:
+![image2](https://cdn.discordapp.com/attachments/490594796088459275/838820838823297144/Screenshot_from_2021-05-03_13-53-50.png)
+
+### Para proceguir com o CRUD da API deve copiar o token e:
+#### 1 Abrir a aba Authorization
+#### 2 Clicar no select *Type* e selecionar a opção *Bearer Token*
+#### 3 Cololar o Token no campo *Token*
+Imagem de exemplo para inserir o token:
+![imagem3](https://cdn.discordapp.com/attachments/490594796088459275/838822398841192498/Screenshot_from_2021-05-03_14-00-12.png)
+
+
 # API Documentation
 Esta API é utilizada para gerenciamento dos usuários
 ## Endpoints
