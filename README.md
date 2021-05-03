@@ -7,8 +7,9 @@ flavio@flavio:~/Desktop/apiRestUsers$ ls
 docker-compose.yml  Dockerfile  instructions.md  jest.config.js  node_modules  package.json  package-lock.json  README.md  src  test
 flavio@flavio:~/Desktop/apiRestUsers$ docker compose up
 ```
-Obs: ao executar o comando, será gerado um erro por parte do nodejs. É necessário que ele termine de criar a pasta mysql com a base de dados, 
-para isso espere aparecer a menssagem:
+- Obs: por conta de ser a primeira execução do container, o Docker ira gerar um erro e fecha-lo. Logo após fechar rode novamente o 'docker-compose up'
+- Obs: ao executar o comando, será gerado um erro por parte do nodejs. É necessário que ele termine de criar a pasta mysql com a base de dados, 
+para isso espere que seja apresentada a menssagem:
 ```
 mysql-container | 2021-05-03T16:19:40.900512Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.24'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
 ```
