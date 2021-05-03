@@ -8,8 +8,6 @@ const connection = require('./database/database.js');
 const userRoute = require('./routes/user.router.js');
 const authenticationRoute = require('./routes/authentication.router.js');
 
-console.log(process.env.JWT_SECRET);
-
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

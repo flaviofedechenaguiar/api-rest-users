@@ -17,6 +17,7 @@ services:
         container_name: node_container
         volumes: 
             - "./:/usr/app"
+            - "/node_modules"
         restart: always
         ports:
             - "3030:3030"
