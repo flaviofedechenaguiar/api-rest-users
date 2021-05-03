@@ -1,6 +1,5 @@
 const app = require('../src/index.js');
 const supertest = require('supertest');
-const { response } = require('../src/index.js');
 const request = supertest(app);
 
 let mainUser = {
@@ -58,13 +57,25 @@ describe('Post - JSONWebToken Authorization', () => {
     test('Deve retornar o status 403 quando não gerado o token', () => {
         return request.post('/auth').send({ nickname: new Date })
             .then(res => {
-                expect(res.statusCode).toEqual(403);
+                expect(res.statusCode).toEqual(401);
                 expect(res.body.error).toBeDefined();
             })
             .catch(err => {
                 fail(err);
             })
     })
+
+    test('Deve retornar o status 403 quando não gerado o token e nickname vazio', () => {
+        return request.post('/auth').send({ nickname: '' })
+            .then(res => {
+                expect(res.statusCode).toEqual(401);
+                expect(res.body.error).toBeDefined();
+            })
+            .catch(err => {
+                fail(err);
+            })
+    })
+
 });
 
 
