@@ -20,7 +20,7 @@ flavio@flavio:~/Desktop/apiRestUsers$ ls
 docker-compose.yml  Dockerfile  instructions.md  jest.config.js  node_modules  package.json  package-lock.json  README.md  src  test
 flavio@flavio:~/Desktop/apiRestUsers$ docker exec -it node_container npm test
 ```
-## 3) Como utilizar o projeto:
+## 3) Configurando POSTMAN para consumir a API para fazer teste manuais:
 O projeto utiliza JWT, por conta disso faz se necessário a criacão de um usuário, e com o **nickname** será utilizado na rota POST */auth*
 para efetuar a autenticacão
 
@@ -30,12 +30,13 @@ Imagem de exemplo para obter o token:
 ![image2](https://cdn.discordapp.com/attachments/490594796088459275/838820838823297144/Screenshot_from_2021-05-03_13-53-50.png)
 
 ### Para proceguir com o CRUD da API deve copiar o token e:
-#### 1 Abrir a aba Authorization
-#### 2 Clicar no select *Type* e selecionar a opção *Bearer Token*
-#### 3 Cololar o Token no campo *Token*
+###### 1 Abrir a aba Authorization
+###### 2 Clicar no select *Type* e selecionar a opção *Bearer Token*
+###### 3 Cololar o Token no campo *Token*
 Imagem de exemplo para inserir o token:
 ![imagem3](https://cdn.discordapp.com/attachments/490594796088459275/838822398841192498/Screenshot_from_2021-05-03_14-00-12.png)
 
+### Pronto! Ambiente configurado para efetuar os testes
 
 # API Documentation
 Esta API é utilizada para gerenciamento dos usuários
