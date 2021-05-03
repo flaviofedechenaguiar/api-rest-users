@@ -108,7 +108,6 @@ module.exports = {
             if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
             } else {
-                console.log(err);
                 return res.status(500).json({ code: 500, error: 'Erro ao fazer cadastro na base de dados' });
             }
         }
@@ -229,7 +228,6 @@ module.exports = {
             if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
             } else {
-                console.log(err);
                 return res.status(500).json({ code: 500, error: 'Erro ao fazer atualização na base de dados' });
             }
         }
@@ -295,7 +293,6 @@ module.exports = {
                 });
             }
         } catch (err) {
-            console.log(err);
             if (err instanceof userErrorResponse) {
                 return res.status(err.code).json({ code: err.code, error: err.error });
             } else {

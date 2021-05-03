@@ -32,8 +32,8 @@
 
 ##### **Diferencial**
 
-- Criação de suíte de testes unitários.
-- Containerização da aplicação com Docker.
+- [x] Criação de suíte de testes unitários.
+- [x] Containerização da aplicação com Docker.
 - Live demo da aplicação.
 
 ---
